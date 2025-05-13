@@ -17,5 +17,7 @@ def generate_task():
     num2 = random.randint(1, 20)
     op = random.choice(operations)
 
-   
+    if op == '/':
+        num1 = num1 * num2  # обеспечение целочисленного деления
+
 
