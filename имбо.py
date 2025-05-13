@@ -18,6 +18,6 @@ def generate_task():
     op = random.choice(operations)
 
     if op == '/':
-        num1 = num1 * num2  # обеспечение целочисленного деления
+        num1 = num1 * num2  
 
 
