@@ -55,4 +55,16 @@ def start_handler(message):
     username = message.from_user.first_name or "игрок"
     start_game(chat_id, username)
 
+@bot.message_handler(commands=['help'])
+def help_handler(message):
+    chat_id = message.chat.id
+    help_text = (
+        "Я бот, который поможет тебе тренироваться в легкой математике!\n\n"
+        "Используй команды:\n"
+        "/start - начать игру\n"
+        "/score - показать счет\n"
+        "/stop - завершить игру\n\n"
+        "После получения задания отправляй ответ числом."
+    )
+    bot.send_message(chat_id, help_text, reply_markup=create_keyboard())
 
