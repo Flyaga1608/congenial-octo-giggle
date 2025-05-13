@@ -68,3 +68,8 @@ def help_handler(message):
     )
     bot.send_message(chat_id, help_text, reply_markup=create_keyboard())
 
+@bot.message_handler(commands=['score'])
+def score_handler(message):
+    chat_id = message.chat.id
+    score = user_data.get(chat_id, {}).get('score', 0)
+    bot.send_message(chat_id, f"Твой текущий счет: {score}", reply_markup=create_keyboard())
