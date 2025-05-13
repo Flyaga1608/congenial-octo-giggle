@@ -49,4 +49,10 @@ def start_game(chat_id: int, username: str):
     }
     bot.send_message(chat_id, f"Привет, {username}! Добро пожаловать в игру по легкой математике.", reply_markup=create_keyboard())
     bot.send_message(chat_id, f"Реши задание:\n{task}\n\nОтправь ответ числом.", reply_markup=create_keyboard())
+@bot.message_handler(commands=['start'])
+def start_handler(message):
+    chat_id = message.chat.id
+    username = message.from_user.first_name or "игрок"
+    start_game(chat_id, username)
+
 
