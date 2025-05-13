@@ -84,3 +84,24 @@ def stop_handler(message):
 def answer_handler(message):
     chat_id = message.chat.id
     text = message.text.strip()
+    if chat_id not in user_data:
+        bot.send_message(chat_id, "Пожалуйста, начни игру командой /start.", reply_markup=create_keyboard())
+        return
+
+    if not (text.lstrip('-').isdigit()):
+        bot.send_message(chat_id, "Пожалуйста, отправь числовой ответ.", reply_markup=create_keyboard())
+        return
+
+    user_answer = int(text)
+    correct_answer = user_data[chat_id]['answer']
+
+    if user_answer == correct_answer:
+        user_data[chat_id]['score'] += 1
+        score = user_data[chat_id]['score']
+        bot.send_message(chat_id, f"Верно! 🎉 Твой счет: {score}", reply_markup=create_keyboard())
+        task, answer = generate_task()
+        user_data[chat_id]['task'] = task
+        user_data[chat_id]['answer'] = answer
+        bot.send_message(chat_id, f"Новое задание:\n{task}\nОтправь ответ числом.", reply_markup=create_keyboard())
+    else:
+        bot.send_message(chat_id, f"Неверно. Попробуй еще раз.\nЗадание: {user_data[chat_id]['task']}", reply_markup=create_keyboard())
