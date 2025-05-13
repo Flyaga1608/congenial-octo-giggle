@@ -105,3 +105,6 @@ def answer_handler(message):
         bot.send_message(chat_id, f"Новое задание:\n{task}\nОтправь ответ числом.", reply_markup=create_keyboard())
     else:
         bot.send_message(chat_id, f"Неверно. Попробуй еще раз.\nЗадание: {user_data[chat_id]['task']}", reply_markup=create_keyboard())
+if __name__ == '__main__':
+    logger.info("Бот запущен!")
+    bot.infinity_polling()
