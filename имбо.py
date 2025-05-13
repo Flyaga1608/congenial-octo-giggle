@@ -19,5 +19,17 @@ def generate_task():
 
     if op == '/':
         num1 = num1 * num2  
+ task = f"{num1} {op} {num2}"
+
+    if op == '+':
+        answer = num1 + num2
+    elif op == '-':
+        answer = num1 - num2
+    elif op == '*':
+        answer = num1 * num2
+    else:
+        answer = num1 // num2
+
+    return task, answer
 
 
