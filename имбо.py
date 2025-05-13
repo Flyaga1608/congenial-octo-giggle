@@ -32,4 +32,11 @@ def generate_task():
 
     return task, answer
 
+def create_keyboard():
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard.add(types.KeyboardButton("/start"))
+    keyboard.add(types.KeyboardButton("/help"))
+    keyboard.add(types.KeyboardButton("/score"))
+    keyboard.add(types.KeyboardButton("/stop"))
+    return keyboard
 
