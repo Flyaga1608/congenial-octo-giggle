@@ -39,4 +39,14 @@ def create_keyboard():
     keyboard.add(types.KeyboardButton("/score"))
     keyboard.add(types.KeyboardButton("/stop"))
     return keyboard
+def start_game(chat_id: int, username: str):
+    task, answer = generate_task()
+    user_data[chat_id] = {
+        'task': task,
+        'answer': answer,
+        'score': 0,
+        'username': username
+    }
+    bot.send_message(chat_id, f"Привет, {username}! Добро пожаловать в игру по легкой математике.", reply_markup=create_keyboard())
+    bot.send_message(chat_id, f"Реши задание:\n{task}\n\nОтправь ответ числом.", reply_markup=create_keyboard())
 
