@@ -73,3 +73,14 @@ def score_handler(message):
     chat_id = message.chat.id
     score = user_data.get(chat_id, {}).get('score', 0)
     bot.send_message(chat_id, f"Твой текущий счет: {score}", reply_markup=create_keyboard())
+@bot.message_handler(commands=['stop'])
+def stop_handler(message):
+    chat_id = message.chat.id
+    if chat_id in user_data:
+        del user_data[chat_id]
+    bot.send_message(chat_id, "Игра остановлена. Если хочешь сыграть снова, отправь /start.", reply_markup=create_keyboard())
+
+@bot.message_handler(func=lambda message: True)
+def answer_handler(message):
+    chat_id = message.chat.id
+    text = message.text.strip()
